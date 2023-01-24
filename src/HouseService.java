@@ -4,133 +4,113 @@ import java.util.List;
 //House -> Ev
 //Housing -> Konut
 public class HouseService {
-    private List<Housing> allHouses;
+//    private List<Housing> allHouses;
+    private List<Housing> houses = new ArrayList<>();
+    private List<Housing> villas = new ArrayList<>();
+    private List<Housing> summeries = new ArrayList<>();
 
     public HouseService() {
-        allHouses = new ArrayList<>();
-        allHouses.add(new House(1000000, 150, 3, 2));
-        allHouses.add(new House(1200000, 180, 4, 2));
-        allHouses.add(new House(1500000, 200, 5, 2));
-        allHouses.add(new Villa(2000000, 250, 5, 3));
-        allHouses.add(new Villa(2200000, 300, 6, 4));
-        allHouses.add(new Villa(2500000, 320, 6, 5));
-        allHouses.add(new SummerHouse(1800000, 200, 4, 2));
-        allHouses.add(new SummerHouse(1900000, 220, 4, 2));
-        allHouses.add(new SummerHouse(2000000, 250, 5, 3));
+//        allHouses = new ArrayList<>();
+//        allHouses.add(new House(1000000, 150, 3, 2));
+//        allHouses.add(new House(1200000, 180, 4, 2));
+//        allHouses.add(new House(1500000, 200, 5, 2));
+//        allHouses.add(new Villa(2000000, 250, 5, 3));
+//        allHouses.add(new Villa(2200000, 300, 6, 4));
+//        allHouses.add(new Villa(2500000, 320, 6, 5));
+//        allHouses.add(new SummerHouse(1800000, 200, 4, 2));
+//        allHouses.add(new SummerHouse(1900000, 220, 4, 2));
+//        allHouses.add(new SummerHouse(2000000, 250, 5, 3));
+
+        houses.add(new House(1000000, 150, 3, 2));
+        houses.add(new House(1200000, 180, 4, 2));
+        houses.add(new House(1500000, 200, 5, 2));
+        villas.add(new Villa(2000000, 250, 5, 3));
+        villas.add(new Villa(2200000, 300, 6, 4));
+        villas.add(new Villa(2500000, 320, 6, 5));
+        summeries.add(new SummerHouse(1800000, 200, 4, 2));
+        summeries.add(new SummerHouse(1900000, 220, 4, 2));
+        summeries.add(new SummerHouse(2000000, 250, 5, 3));
     }
 
     public List<Housing> getHouses() {
-        List<Housing> houses = new ArrayList<>();
-        for (Housing house : allHouses) {
-            if (house instanceof House) {
-                houses.add(house);
-            }
-        }
         return houses;
     }
 
     public List<Housing> getVillas() {
-        List<Housing> villas = new ArrayList<>();
-        for (Housing house : allHouses) {
-            if (house instanceof Villa) {
-                villas.add(house);
-            }
-        }
         return villas;
     }
 
     public List<Housing> getSummerHouses() {
-        List<Housing> summerHouses = new ArrayList<>();
-        for (Housing house : allHouses) {
-            if (house instanceof SummerHouse) {
-                summerHouses.add(house);
-            }
-        }
-        return summerHouses;
+        return summeries;
     }
 
     public double getTotalPriceForHouses() {
         double totalPrice = 0;
-        for (Housing house : allHouses) {
-            if (house instanceof House) {
+        for (Housing house : houses) {
                 totalPrice += house.getPrice();
-            }
         }
         return totalPrice;
     }
 
     public double getTotalPriceForVillas() {
         double totalPrice = 0;
-        for (Housing house : allHouses) {
-            if (house instanceof Villa) {
-                totalPrice += house.getPrice();
-            }
+        for (Housing villa : villas) {
+                totalPrice += villa.getPrice();
         }
         return totalPrice;
     }
 
     public double getTotalPriceForSummerHouses() {
         double totalPrice = 0;
-        for (Housing house : allHouses) {
-            if (house instanceof SummerHouse) {
-                totalPrice += house.getPrice();
-            }
+        for (Housing summery : summeries) {
+                totalPrice += summery.getPrice();
         }
         return totalPrice;
     }
 
     public double getTotalPriceForAllHouses() {
-        double totalPrice = 0;
-        for (Housing house : allHouses) {
-            totalPrice += house.getPrice();
-        }
-        return totalPrice;
+        return getTotalPriceForHouses() + getTotalPriceForSummerHouses() + getTotalPriceForVillas();
     }
 
     public double getAverageSquareMetersForHouses() {
         double totalSquareMeters = 0;
-        int houseCount = 0;
-        for (Housing house : allHouses) {
+        for (Housing house : houses) {
             if (house instanceof House) {
                 totalSquareMeters += house.getSquareMeters();
-                houseCount++;
             }
         }
-        return totalSquareMeters / houseCount;
+        return totalSquareMeters / houses.size();
     }
     public double getAverageSquareMetersForVillas() {
         double totalSquareMeters = 0;
-        int villaCount = 0;
-        for (Housing house : allHouses) {
+        for (Housing house : villas) {
             if (house instanceof Villa) {
                 totalSquareMeters += house.getSquareMeters();
-                villaCount++;
             }
         }
-        return totalSquareMeters / villaCount;
+        return totalSquareMeters / villas.size();
     }
 
     public double getAverageSquareMetersForSummerHouses() {
         double totalSquareMeters = 0;
-        int summerHouseCount = 0;
-        for (Housing house : allHouses) {
+        for (Housing house : summeries) {
             if (house instanceof SummerHouse) {
                 totalSquareMeters += house.getSquareMeters();
-                summerHouseCount++;
             }
         }
-        return totalSquareMeters / summerHouseCount;
+        return totalSquareMeters / summeries.size();
     }
 
     public double getAverageSquareMetersForAllHouses() {
-        double totalSquareMeters = 0;
-        for (Housing house : allHouses) {
-            totalSquareMeters += house.getSquareMeters();
-        }
-        return totalSquareMeters / allHouses.size();
+        int totalHouse = houses.size() + villas.size() + summeries.size();
+        return (getAverageSquareMetersForHouses() + getAverageSquareMetersForSummerHouses() + getAverageSquareMetersForVillas()) / totalHouse;
     }
 
     public List<Housing> filterHousesByRoomsAndSalons(int minRooms, int minSalons) {
+        List<Housing> allHouses = new ArrayList<>();
+        allHouses.addAll(summeries);
+        allHouses.addAll(villas);
+        allHouses.addAll(houses);
         List<Housing> filteredHouses = new ArrayList<>();
         for (Housing house : allHouses) {
             if (house.getRooms() >= minRooms && house.getSalons() >= minSalons) {
