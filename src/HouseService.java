@@ -8,6 +8,7 @@ public class HouseService {
     public List<Housing> houses = new ArrayList<>();
     public List<Housing> villas = new ArrayList<>();
     public List<Housing> summeries = new ArrayList<>();
+    public List<Housing> allHouses = new ArrayList<>();
 
     //Datayı almak için constructor kullandım.
     public HouseService() {
@@ -20,6 +21,9 @@ public class HouseService {
         summeries.add(new SummerHouse(1800000, 200, 4, 2));
         summeries.add(new SummerHouse(1900000, 220, 4, 2));
         summeries.add(new SummerHouse(2000000, 250, 5, 3));
+        allHouses.addAll(summeries);
+        allHouses.addAll(villas);
+        allHouses.addAll(houses);
     }
 
     //evlerin toplam fiyatını dönen metod
@@ -42,10 +46,6 @@ public class HouseService {
 
     //Oda ve salon sayısına göre tüm tipteki evleri filtreleyip dönen metod
     public List<Housing> filterHousesByRoomsAndSalons(int minRooms, int minSalons) {
-        List<Housing> allHouses = new ArrayList<>();
-        allHouses.addAll(summeries);
-        allHouses.addAll(villas);
-        allHouses.addAll(houses);
         List<Housing> filteredHouses = new ArrayList<>();
         for (Housing house : allHouses) {
             if (house.getRooms() >= minRooms && house.getSalons() >= minSalons) {
