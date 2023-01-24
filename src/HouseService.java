@@ -4,10 +4,12 @@ import java.util.List;
 //House -> Ev
 //Housing -> Konut
 public class HouseService {
+    //ev, villa ve yazlık için ödevde istenilen şekilde ayrı ayrı liste oluşturdum.
     private List<Housing> houses = new ArrayList<>();
     private List<Housing> villas = new ArrayList<>();
     private List<Housing> summeries = new ArrayList<>();
 
+    //Datayı almak için constructor kullandım.
     public HouseService() {
         houses.add(new House(1000000, 150, 3, 2));
         houses.add(new House(1200000, 180, 4, 2));
@@ -20,6 +22,7 @@ public class HouseService {
         summeries.add(new SummerHouse(2000000, 250, 5, 3));
     }
 
+    //Evleri yazlıkları ve villaları döndüren metodlar.
     public List<Housing> getHouses() {
         return houses;
     }
@@ -32,6 +35,7 @@ public class HouseService {
         return summeries;
     }
 
+    //Evlerin toplam fiyatını dönen metod
     public double getTotalPriceForHouses() {
         double totalPrice = 0;
         for (Housing house : houses) {
@@ -40,6 +44,7 @@ public class HouseService {
         return totalPrice;
     }
 
+    //Villaların toplam fiyatını dönen metod
     public double getTotalPriceForVillas() {
         double totalPrice = 0;
         for (Housing villa : villas) {
@@ -48,6 +53,7 @@ public class HouseService {
         return totalPrice;
     }
 
+    //Yazlıkların toplam fiyatını dönen metod
     public double getTotalPriceForSummerHouses() {
         double totalPrice = 0;
         for (Housing summery : summeries) {
@@ -56,10 +62,12 @@ public class HouseService {
         return totalPrice;
     }
 
+    //Tüm tipteki evlerin toplam fiyatını alan metod
     public double getTotalPriceForAllHouses() {
         return getTotalPriceForHouses() + getTotalPriceForSummerHouses() + getTotalPriceForVillas();
     }
 
+    //Evlerin ortlama metrekareisini dönen metod
     public double getAverageSquareMetersForHouses() {
         double totalSquareMeters = 0;
         for (Housing house : houses) {
@@ -69,6 +77,8 @@ public class HouseService {
         }
         return totalSquareMeters / houses.size();
     }
+
+    //Villaların ortalama metrekaresini dönen metod
     public double getAverageSquareMetersForVillas() {
         double totalSquareMeters = 0;
         for (Housing house : villas) {
@@ -79,6 +89,7 @@ public class HouseService {
         return totalSquareMeters / villas.size();
     }
 
+    //Yazlıkların ortalama metrekaresini dönen metod
     public double getAverageSquareMetersForSummerHouses() {
         double totalSquareMeters = 0;
         for (Housing house : summeries) {
@@ -89,11 +100,13 @@ public class HouseService {
         return totalSquareMeters / summeries.size();
     }
 
+    //Tüm tipteki evlerin ortalama metrekaresini dönen metod
     public double getAverageSquareMetersForAllHouses() {
         int totalHouse = houses.size() + villas.size() + summeries.size();
         return (getAverageSquareMetersForHouses() + getAverageSquareMetersForSummerHouses() + getAverageSquareMetersForVillas()) / totalHouse;
     }
 
+    //Oda ve salon sayısına göre tüm tipteki evleri filtreleyip dönen metod
     public List<Housing> filterHousesByRoomsAndSalons(int minRooms, int minSalons) {
         List<Housing> allHouses = new ArrayList<>();
         allHouses.addAll(summeries);
