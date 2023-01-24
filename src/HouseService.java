@@ -4,23 +4,11 @@ import java.util.List;
 //House -> Ev
 //Housing -> Konut
 public class HouseService {
-//    private List<Housing> allHouses;
     private List<Housing> houses = new ArrayList<>();
     private List<Housing> villas = new ArrayList<>();
     private List<Housing> summeries = new ArrayList<>();
 
     public HouseService() {
-//        allHouses = new ArrayList<>();
-//        allHouses.add(new House(1000000, 150, 3, 2));
-//        allHouses.add(new House(1200000, 180, 4, 2));
-//        allHouses.add(new House(1500000, 200, 5, 2));
-//        allHouses.add(new Villa(2000000, 250, 5, 3));
-//        allHouses.add(new Villa(2200000, 300, 6, 4));
-//        allHouses.add(new Villa(2500000, 320, 6, 5));
-//        allHouses.add(new SummerHouse(1800000, 200, 4, 2));
-//        allHouses.add(new SummerHouse(1900000, 220, 4, 2));
-//        allHouses.add(new SummerHouse(2000000, 250, 5, 3));
-
         houses.add(new House(1000000, 150, 3, 2));
         houses.add(new House(1200000, 180, 4, 2));
         houses.add(new House(1500000, 200, 5, 2));
